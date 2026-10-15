@@ -1,0 +1,30 @@
+// Pin Definitions
+const int SENSOR_PIN = 2; // KY-002 Signal pin
+const int LED_PIN = 13;   // LED positive leg pin
+
+
+void setup() {
+  pinMode(SENSOR_PIN, INPUT); // Set KY-002 as an input
+  pinMode(LED_PIN, OUTPUT);    // Set LED as an output
+  Serial.begin(9600);
+ 
+}
+
+
+void loop() {
+  // Read the current state of the vibration sensor
+  int sensorState = digitalRead(SENSOR_PIN);
+
+
+
+
+  // If your LED stays on and turns off when shaken, change 'LOW' to 'HIGH'.
+  if (sensorState == LOW) {
+    digitalWrite(LED_PIN, HIGH);
+   Serial.println(“Touched”);   // Turn LED on
+    delay(500);                    // Keep it visible for half a second
+  } else {
+    digitalWrite(LED_PIN, LOW);
+    Serial.println(“Not Touched”);    // Turn LED off
+  }
+}
